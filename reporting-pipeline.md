@@ -4,7 +4,7 @@
 
 ## Summary
 
-A marketing agency sends each client a monthly report and a short video in which the owner walks through the numbers. I designed and built the system that produces the report, a slide deck, and a draft of the owner's script for every client, from the analytics APIs to the agency's review folder. I was the only engineer. It runs on a schedule for 20 of the agency's clients across two brands. The most recent run produced reports for 19 clients in 22 minutes.
+A marketing agency sends each client a monthly report and a short video in which the owner walks through the numbers. I designed and built the system that produces the report, a slide deck, and a draft of the owner's script for every client, from the analytics APIs to the agency's review folder. I was the only engineer. It runs on a monthly schedule for about 20 of the agency's clients across two brands, and a full run takes about 22 minutes.
 
 Every number is computed in code. A language model writes only the script, from the finished report, and each number in its draft is checked against that report. Nothing reaches a client until the owner has reviewed it and recorded the video.
 
