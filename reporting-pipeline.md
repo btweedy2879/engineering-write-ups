@@ -4,7 +4,7 @@
 
 ## Summary
 
-A marketing agency sends each client a monthly report and a short video in which the owner walks through the numbers. I designed and built the system that produces the report, a slide deck, and a draft of the owner's script for every client, from the analytics APIs to the agency's review folder. I was the only engineer. It runs on a schedule for 20 of the agency's clients across two brands. The most recent run produced 19 clients' reports in 22 minutes and flagged 8 of them.
+A marketing agency sends each client a monthly report and a short video in which the owner walks through the numbers. I designed and built the system that produces the report, a slide deck, and a draft of the owner's script for every client, from the analytics APIs to the agency's review folder. I was the only engineer. It runs on a schedule for 20 of the agency's clients across two brands. The most recent run produced reports for 19 clients in 22 minutes.
 
 Every number is computed in code. A language model writes only the script, from the finished report, and each number in its draft is checked against that report. Nothing reaches a client until the owner has reviewed it and recorded the video.
 
@@ -34,7 +34,7 @@ flowchart LR
 
 **Verdicts by threshold.** Each metric gets a verdict (strong win, win, steady, watch, concern, or insufficient data) from fixed bands, calibrated against the words the owner used for the same changes in past videos. A decline never renders without a cause and an action from deterministic rules. When no rule applies, the report is flagged.
 
-**The model drafts the script from a finished report.** It receives the report with internal notes removed and returns structured output: a preview sentence, one passage per section, and an optional closing line. The greeting and sign-off are fixed strings. The voice guide was derived from 378 transcripts of the owner's past updates: his openers, closes, and judgment words.
+**The model drafts the script from a finished report.** It receives the report with internal notes removed and returns structured output: a preview sentence, one passage per section, and an optional closing line. The greeting and sign-off are fixed strings. The voice guide was derived from a year of the owner's past updates: his openers, closes, and judgment words.
 
 **Checks on the output.** A refusal or truncated response fails that client's script. Returned sections must match the report's sections in order. Every number in the script must appear verbatim in the report, and any that does not is logged against that client. A script failure never blocks the report.
 
@@ -60,7 +60,7 @@ flowchart LR
 
 **Rules for causes, with the model kept to wording.** A model would word causes more naturally and would sometimes be convincingly wrong. A rule can be traced to a line of code.
 
-**Fixed verdict bands.** Across 19 reports compared with the owner's recordings, the bands ran colder than he does, calling a 3 to 9 percent rise "steady" where he calls it growth.
+**Fixed verdict bands.** Compared with the owner's recordings, the bands ran colder than he does, calling a 3 to 9 percent rise "steady" where he calls it growth.
 
 **Configuration as files in the repository.** Every change is an attributed commit, and the test suite parses every client file before a run touches data. The cost is a commit per save and a short read cache in the dashboard.
 
@@ -72,8 +72,8 @@ I wrote the contracts first: the record schema, the configuration schema, and th
 
 ## Outcome
 
-- First commit July 31, 2026. First review package five days later, 19 clients onboarded in early September, dashboard deployed in October, scripts live in November.
-- The November 5 scheduled run covered 21 configured clients: 19 produced a report and script, 18 with a deck, and 2 were skipped by rule. Eleven were ready and 8 were flagged. One deck failed to render and its report was filed without it.
+- Built from July through November 2026.
+- The November scheduled run produced reports for 19 clients in 22 minutes.
 - The owner and the strategist reviewed and approved the report content.
 - The strategist had spent 20 to 30 percent of each month assembling these reports. He now sends the owner the generated reports, which I estimate removes at least 80 percent of that preparation.
 

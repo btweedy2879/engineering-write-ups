@@ -27,7 +27,7 @@ Most of these came from reading the new API and probing its sandbox.
 
 **The switch.** Each location row names its system. A corporate user changes it on a portal screen. The save is a conditional write, refused while the location has online rentals on or in progress. It triggers an immediate unit sync from the new system, and rentals stay off until a sync succeeds. It works in both directions, and every change writes an activity log row.
 
-**Quote check before charge.** Before the card goes out, the move-in is quoted again. A quote whose lines do not add up to its total, or a total that differs from the accepted one by half a cent or more, refuses the payment and asks the customer to refresh. I added the same check to the incumbent path.
+**Quote check before charge.** Before the card goes out, the move-in is quoted again. A quote whose lines do not add up to its total, or whose total has changed, refuses the payment and asks the customer to refresh. I added the same check to the incumbent path.
 
 **Payment without an idempotency key.** The session row is marked in flight with a conditional update before the request is sent, which is also the lock against a double submit. If the call times out, the code does not send it again. It reads the unit from the vendor:
 
@@ -44,7 +44,7 @@ flowchart TD
 
 A release charges nothing, and it applies only if the row is unchanged since the staff page loaded.
 
-**Lease signing by poll.** Every ten minutes a scheduled job reads the ledger of each paid rental from the last 21 days, least recently checked first, one run at a time. A signed lease completes the rental through the same code path as the incumbent's redirect, and completion is idempotent. The signing screen also has a button that checks that one rental immediately.
+**Lease signing by poll.** Every ten minutes a scheduled job reads the ledger of each open rental. A signed lease completes the rental through the same code path as the incumbent's redirect, and completion is idempotent. The signing screen also has a button that checks that one rental immediately.
 
 **Server-side state checks.** Turning rentals off at a location used to change only the button. A stale tab or a direct POST could still create a tenant in the wrong system, so every handler now checks the location's state on the server, refuses before any card data is read, and logs the refusal.
 
@@ -64,7 +64,7 @@ A release charges nothing, and it applies only if the row is unchanged since the
 
 ## Trade-offs
 
-**Adapter vs. rewrite.** Rebuilding the checkout around the new vendor would have produced cleaner code and one implementation, and it would have put the 23 locations that were not moving yet on a new rental path. I kept the incumbent's vendor calls as they were, added the guards above to the handlers both systems share, and accepted two implementations until the last facility converts.
+**Adapter vs. rewrite.** Rebuilding the checkout around the new vendor would have produced cleaner code and one implementation, and it would have put the locations that were not moving yet on a new rental path. I kept the incumbent's vendor calls as they were, added the guards above to the handlers both systems share, and accepted two implementations until the last facility converts.
 
 **The incumbent's data shape as the common model.** The translator emits the old vendor's field names rather than a neutral model. That kept the sync, grouping, and storefront out of the change, and it means the old vendor's vocabulary outlives the old vendor in this codebase. I would not make that choice in a system meant to last past the migration.
 
