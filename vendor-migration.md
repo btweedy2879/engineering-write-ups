@@ -6,7 +6,7 @@
 
 I built and maintain the online rental checkout for a 25-location self-storage operator. It handles reservation, card payment, and lease signing against the operator's facility management system, the system of record for units, pricing, tenants, and ledgers. In 2026 the operator moved to a different vendor for that system, converting one facility at a time over several months.
 
-As the sole engineer, I designed and built the second vendor integration so the checkout runs against both systems concurrently, with the backing system selected per location. It shipped on October 31, 2026. The first two facilities went live on the new system on November 2, and the remaining locations convert on the operator's schedule with no code changes.
+As the sole engineer, I designed and built the second vendor integration so the checkout runs against both systems concurrently, with the backing system selected per location. It shipped on October 31, 2026. The first two facilities went live on the new system on November 2, and the remaining locations convert on the operator's schedule.
 
 ## Constraints
 
