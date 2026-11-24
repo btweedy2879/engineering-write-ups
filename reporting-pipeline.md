@@ -76,7 +76,7 @@ I wrote the contracts first: the record schema, the configuration schema, and th
 - First commit July 31, 2026. A first review package went to the owner five days later, 19 clients were onboarded in early September, the dashboard was deployed in October, and scripts were added in November.
 - The scheduled run on November 5 covered 21 configured clients: 19 delivered a report, a deck, and a script, 10 of them ready and 9 marked for review, and 2 were skipped by rule (one quarterly, one still onboarding). One client's deck failed to render and its report was delivered anyway.
 - The owner and the strategist reviewed the report content and approved it. The owner's words on the call: "the bullets look good."
-- The assembly that had taken 20 to 30 percent of the strategist's month is now that 22-minute run plus a read of the flagged clients.
+- The strategist had been spending 20 to 30 percent of his month assembling these reports. He now sends the owner the reports the system generates, which I estimate removes at least 80 percent of that preparation. What remains is the read of the flagged clients.
 
 What I would do differently. The limit on this project was the owner's time to review, not my time to build. I built the dashboard, the deck, and the script while the first reports were still waiting for feedback. I would now ship the narrowest report, get it into the monthly routine, and let the next piece wait for that. The correction loop is the clearest case: the code that turns a reviewer's edits into examples for the next draft is built and tested, and it has not yet run in production. It is still a manual step, and the scheduled run does not yet save the draft it compares against.
 
