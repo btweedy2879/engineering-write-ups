@@ -4,9 +4,9 @@
 
 ## Summary
 
-A self-storage operator with 25 locations rents units online through a checkout I built and run: a customer picks a unit, reserves it, pays the move-in cost by card, and signs the lease, without visiting the office. Every one of those steps is a call into the operator's facility management system, which owns units, prices, tenants, and ledgers. In 2026 the operator changed vendors for that system and chose to convert one facility at a time over several months.
+I built and maintain the online rental checkout for a 25-location self-storage operator. It handles reservation, card payment, and lease signing against the operator's facility management system, the system of record for units, pricing, tenants, and ledgers. In 2026 the operator moved to a different vendor for that system, converting one facility at a time over several months.
 
-I designed and built the integration with the second vendor so that both systems serve the same checkout at once and a location moves from one to the other with a setting. It went to production on October 31, 2026, and the first two facilities cut over on November 2. I was the only engineer on it.
+As the sole engineer, I designed and built the second vendor integration so the checkout runs against both systems concurrently, with the backing system selected per location. It shipped on October 31, 2026. The first two facilities cut over on November 2, and the remaining locations convert on the operator's schedule with no code changes.
 
 ## Constraints
 
